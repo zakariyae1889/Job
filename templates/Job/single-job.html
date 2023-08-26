@@ -1,0 +1,100 @@
+{%extends 'index.html'%}
+{%load static%}
+{%load bootstrap4%}
+{%block body%}
+ <div class="hero-wrap hero-wrap-2" style="background-image: url('static/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-end justify-content-start">
+        <div class="col-md-12 ftco-animate text-center mb-5">
+            <p class="breadcrumbs mb-0"><span class="mr-3"><a href="{%url 'home'%}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Job Post</span></p>
+          <h1 class="mb-3 bread">Post A Job</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="ftco-section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8 mb-5">
+         
+        
+           <form action="#" class="p-5 bg-white" method="post" enctype="multipart/form-data">
+                {% if messages%}
+                    {%for message in messages%}
+                        <div class="alert alert-primary alert-dismissable fad show" role="alert">
+                        <strong>{{message}}</strong>
+                        </div>
+                    {%endfor%}
+                {%endif%}
+                <div class="form-group">
+                   {%csrf_token%}
+                   {% bootstrap_form  FormApply %}
+                    <div class="col-md-12">
+                        {% buttons %}
+                          <button type="submit" class="btn btn-primary form-control  py-2 px-5">ApplyJob</button>
+                        {% endbuttons %}
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4">
+          <div class="p-4 mb-3 bg-white">
+            <h3 class="h5 text-danger mb-3 text-center ">Job Info</h3>
+            <p class="mb-0 font-weight-bold">Category:<span class="mx-4 text-success ">{{job_single.Category}}</span></p>
+            
+            <p class="mb-0 font-weight-bold">owner:<span class="mx-4 text-success ">{{job_single.Owner.username}}</span></p>
+            
+            <p class="mb-0 font-weight-bold">Title:<span class="mx-4 text-success ">{{job_single.Title}}</span></p>
+            
+            <p class="mb-0 font-weight-bold">Company:<span class="mx-4 text-success ">{{job_single.Company}}</span></p>
+            
+            <p class="mb-0 font-weight-bold">EmailAddress:<span class="mx-4 text-success ">{{job_single.EmailAddress}}</span></p>
+           
+            <p class="mb-0 font-weight-bold">Location:<span class="mx-4 text-success ">{{job_single.Location}}</span></p>
+            
+            <p class="mb-0 font-weight-bold">Price:<span class="mx-4 text-success ">{{job_single.Price}}$</span></p>
+            
+
+            <p class="mb-0 font-weight-bold">Jobtype:<span class="mx-4 text-success ">{{job_single.Jobtype}}</span></p>
+           
+            <p class="mb-0 font-weight-bold">Vacancy:<span class="mx-4 text-success ">{{job_single.Vacancy}}</span></p>
+            
+            <p class="mb-0 font-weight-bold">Experiencse:<span class="mx-4 text-success ">{{job_single.Experiencse}} Year</span></p>
+           
+
+          </div>
+          
+          <div class="p-4 mb-3 bg-white">
+            <h3 class="h5 text-black mb-3">More Info Job</h3>
+            <p>{{job_single.Description}}</p>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+      
+  <section class="ftco-section-parallax">
+    <div class="parallax-img d-flex align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+            <h2>Subcribe to our Newsletter</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+            <div class="row d-flex justify-content-center mt-4 mb-4">
+              <div class="col-md-12">
+                <form action="#" class="subscribe-form">
+                  <div class="form-group d-flex">
+                    <input type="text" class="form-control" placeholder="Enter email address">
+                    <input type="submit" value="Subscribe" class="submit px-3">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{%endblock%}
