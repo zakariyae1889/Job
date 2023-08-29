@@ -8,6 +8,7 @@ urlpatterns = [
   path('PostJob/',views.JobApp.PagePostJob,name='PostJob'),
   path('JobEdit/',views.JobApp.PageEditJob,name='JobEdit'),
   path('JobDisplay/',views.JobApp.PageDisplayJob,name='JobDisplay'),
+  path('JobDelete/<int:id>',views.JobApp.PageDeleteJob,name='JobDelete'),
  
  
 ]

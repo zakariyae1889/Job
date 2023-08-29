@@ -75,12 +75,19 @@ class JobApp():
     @login_required(login_url='Login')
     def PageDisplayJob(request):
         job=Job.objects.filter(Owner=request.user)
+         #-----Paginator-------------#
+        paginator=Paginator(job,4)
+        PageNumber=request.GET.get('page')
+        Page_obj=paginator.get_page(PageNumber)
+        
         return render(request,template_name='Job/display-job.html',context={
-            'job':job
+            'job':Page_obj
         })
     @login_required(login_url='Login')
-    def PageDeleteJob(request):
-        pass
+    def PageDeleteJob(request,id):
+        job=get_object_or_404(Job,id=id)
+        job.delete()
+        return redirect('Profile')
 
     
 
