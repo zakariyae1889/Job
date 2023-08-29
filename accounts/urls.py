@@ -11,10 +11,10 @@ urlpatterns = [
     #--------------------------------ManageUsers-------------------------------------------#
     path('SingUp/',views.Accounts.SingUpPages,name="SingUp"),
     path('Login/',LoginView.as_view(template_name='accounts/login.html'),name='Login'),
-    path("Logout/",LogoutView.as_view(template_name='Home.html'),name='Logout'),
-    path("Profile/",views.Accounts.PageProfile,name="Profile"),
-    path("EditProfile/",views.Accounts.PageEditProfile,name="EditProfile"),
-    path("Delete/",views.Accounts.PageDeleteAccount,name="Delete"),
+    path('Logout/',LogoutView.as_view(template_name='Home.html'),name='Logout'),
+    path('Profile/',views.Accounts.PageProfile,name='Profile'),
+    path('EditProfile/',views.Accounts.PageEditProfile,name='EditProfile'),
+    path('Delete/',views.Accounts.PageDeleteAccount,name='Delete'),
     
     #--------------------------------ManagePassword-------------------------------------------#
     path('password/', PasswordChangeView.as_view(template_name='accounts/password/password_change.html',success_url=reverse_lazy('password_change_done')), name='password_change'),

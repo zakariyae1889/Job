@@ -7,7 +7,7 @@ class  Profiles(models.Model):
     Country=models.CharField(max_length=255,null=True)
     City=models.CharField(max_length=255,null=True)
     
-    Photo=models.ImageField(upload_to='photoUser/',null=True)
+    Photo=models.ImageField(upload_to='Profile/',null=True)
     Phone=models.CharField(max_length=255,null=True)
     
     def __str__(self) -> str:

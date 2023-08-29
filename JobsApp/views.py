@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .filters import JobFilter
 from .models import Job
 from  django.core.paginator import Paginator
-from .form import ApplyJobForm,PostJobForm
+from .form import ApplyJobForm,PostJobForm,EditJobForm
 from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
@@ -40,6 +40,7 @@ class JobApp():
         'job_single':job_single,
         "FormApply":FormApply,
     })
+    #----------------------------------------------------------------#
     @login_required(login_url='Login')
     def PagePostJob(request):
         if request.method=="POST":
@@ -55,6 +56,31 @@ class JobApp():
         return render(request,template_name='Job/job-post.html', context={
         "formJob": formJob
     })
+    #----------------------------------------------------------------#
+    @login_required(login_url='Login')
+    def PageEditJob(request):
+        job=get_object_or_404(Job,Owner=request.user)
+        if request.method=='POST':
+            formJob=EditJobForm(request.POST,instance=job)
+            if formJob.is_valid():
+                myform=formJob.save(commit=False)
+                myform.Owner=request.user
+                myform.save()
+                return redirect("Profile")
+        else:formJob=EditJobForm(instance=job)
+        return render(request,template_name='Job/Edit-Job.html',context={
+            'formJob':formJob
+        })
+    #----------------------------------------------------------------#
+    @login_required(login_url='Login')
+    def PageDisplayJob(request):
+        job=Job.objects.filter(Owner=request.user)
+        return render(request,template_name='Job/display-job.html',context={
+            'job':job
+        })
+    @login_required(login_url='Login')
+    def PageDeleteJob(request):
+        pass
 
     
 

@@ -13,5 +13,11 @@ class PostJobForm(forms.ModelForm):
         
         fields='__all__'
         exclude=['slug','Owner']
+
+class EditJobForm(forms.ModelForm):
+    class Meta:
+        model=Job
+        fields='__all__'
+        exclude=['slug','Owner']
           
         
